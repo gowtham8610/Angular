@@ -1,0 +1,114 @@
+<div class="calculator">
+  <div class="calculator-controls">
+    <button (click)="clearOperation()" [ngClass]="{inactive:(showHistory)}">
+      <span>clear</span>
+    </button>
+    <button (click)="clearHistory()" [ngClass]="{inactive:(!history.length)}">
+      <span>clear history</span>
+    </button>
+    <div class="calculator-last-calculation calculator-display">
+      <div *ngIf="lastOperation" class="calculator-input">
+        <p>{{lastOperation.output}}</p>
+      </div>
+      <div *ngIf="lastOperation" class="calculator-result" (click)="copyToClipboard(lastOperation.result)">
+        <p>= <b>{{lastOperation.result}}</b></p>
+      </div>
+    </div>
+    <button (click)="showHistory = !showHistory" [ngClass]="{active: showHistory, inactive:(!history.length)}">
+      <span *ngIf="!showHistory">sow history</span>
+      <span *ngIf="showHistory">hide history</span>
+    </button>
+  </div>
+  <div *ngIf="!showHistory" class="calculator-display">
+    <div class="calculator-input" (keypress)="onKeyPress($event)" (keydown)="onKeyDown($event)">
+      <p>{{output}}</p>
+    </div>
+    <div class="calculator-result" (click)="copyToClipboard(result)" (keypress)="onKeyPress($event)"
+         (keydown)="onKeyDown($event)">
+      <p>= <b>{{result}}</b></p>
+    </div>
+  </div>
+  <div *ngIf="!showHistory" class="calculator-keyboard" (keypress)="onKeyPress($event)" (keydown)="onKeyDown($event)">
+    <div class="calculator-keyboard-left">
+      <button class="calculator-key calculator-key-bracket" (click)="keyPress('bracket')"
+              [ngClass]="{active:(currentPressed === 'bracket')}">
+        <span>( )</span>
+      </button>
+      <button class="calculator-key calculator-key-multiply" (click)="keyPress('multiply')"
+              [ngClass]="{active:(currentPressed === 'multiply')}">
+        <span>*</span>
+      </button>
+      <button class="calculator-key calculator-key-divide" (click)="keyPress('divide')"
+              [ngClass]="{active:(currentPressed === 'divide')}">
+        <span>/</span>
+      </button>
+      <button class="calculator-key calculator-key-1" (click)="keyPress(1)" [ngClass]="{active:(currentPressed === 1)}">
+        <span>1</span>
+      </button>
+      <button class="calculator-key calculator-key-2" (click)="keyPress(2)" [ngClass]="{active:(currentPressed === 2)}">
+        <span>2</span>
+      </button>
+      <button class="calculator-key calculator-key-3e" (click)="keyPress(3)"
+              [ngClass]="{active:(currentPressed === 3)}">
+        <span>3</span>
+      </button>
+      <button class="calculator-key calculator-key-4" (click)="keyPress(4)" [ngClass]="{active:(currentPressed === 4)}">
+        <span>4</span>
+      </button>
+      <button class="calculator-key calculator-key-5" (click)="keyPress(5)" [ngClass]="{active:(currentPressed === 5)}">
+        <span>5</span>
+      </button>
+      <button class="calculator-key calculator-key-6" (click)="keyPress(6)" [ngClass]="{active:(currentPressed === 6)}">
+        <span>6</span>
+      </button>
+      <button class="calculator-key calculator-key-7" (click)="keyPress(7)" [ngClass]="{active:(currentPressed === 7)}">
+        <span>7</span>
+      </button>
+      <button class="calculator-key calculator-key-8" (click)="keyPress(8)" [ngClass]="{active:(currentPressed === 8)}">
+        <span>8</span>
+      </button>
+      <button class="calculator-key calculator-key-9" (click)="keyPress(9)" [ngClass]="{active:(currentPressed === 9)}">
+        <span>9</span>
+      </button>
+      <button class="calculator-key calculator-key-0" (click)="keyPress(0)" [ngClass]="{active:(currentPressed === 0)}">
+        <span>0</span>
+      </button>
+      <button class="calculator-key calculator-key-decimal" (click)="keyPress('decimal')"
+              [ngClass]="{active:(currentPressed === 'decimal')}">
+        <span>.</span>
+      </button>
+    </div>
+    <div class="calculator-keyboard-right">
+      <button class="calculator-key calculator-key-erase" (click)="keyPress('erase')"
+              [ngClass]="{active:(currentPressed === 'erase')}">
+        <span><<</span>
+      </button>
+      <button class="calculator-key calculator-key-subtract" (click)="keyPress('subtract')"
+              [ngClass]="{active:(currentPressed === 'subtract')}">
+        <span>-</span>
+      </button>
+      <button class="calculator-key calculator-key-add" (click)="keyPress('add')"
+              [ngClass]="{active:(currentPressed === 'add')}">
+        <span>+</span>
+      </button>
+      <button class="calculator-key calculator-key-result" (click)="keyPress('result')"
+              [ngClass]="{active:(currentPressed === 'result')}">
+        <span>=</span>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="showHistory">
+    <ul>
+      <li *ngFor="let entry of history">
+        <div class="calculator-display">
+          <div class="calculator-input">
+            <p>{{entry.output}}</p>
+          </div>
+          <div class="calculator-result" (click)="copyToClipboard(entry.result)">
+            <p>= <b>{{entry.result}}</b></p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
