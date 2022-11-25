@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <!-- The image half -->
+        <div class="col-md-6 d-none d-md-flex bg-image"></div>
+        <!-- The content half -->
+        <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+                <!-- Demo content-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h3 class="text-center d-flex justify-content-between mt-4">SPR HIGHER SECONDARY SCHOOL</h3><br>
+                            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                                <div class="form-group mb-3">
+                                    <input id="inputEmail" type="email" formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                     </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="inputPassword" type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
+                                     </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Login</button>
+                                <div><u><p style="margin-right:14.5em"><font size="2.5">Forget password?</font></p></u></div>
+                                <div class="text-center d-flex justify-content-between mt-4"><p><font size="2.5">"Creativity is seeing the same thing but thinking differently"</font><br>
+                                        <u><p style="margin-left:15.5em">-A.P.J Abdul Kalam</p></u></p></div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- End -->
+            </div>
+        </div><!-- End -->
+    </div>
+</div>

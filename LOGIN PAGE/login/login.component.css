@@ -1,0 +1,14 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+.bg-image {
+  background-image: url('https://img.freepik.com/free-vector/school-building-road-scene_25030-39841.jpg?w=2000');
+  background-size: cover;
+  background-position: center center;
+}
+
+.invalid-feedback
+{
+  margin-left: 25px;
+}
